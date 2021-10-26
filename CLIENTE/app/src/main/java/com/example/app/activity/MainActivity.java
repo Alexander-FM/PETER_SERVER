@@ -3,6 +3,7 @@ package com.example.app.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
             viewModel.login(edtMail.getText().toString(), edtPassword.getText().toString()).observe(this, response -> {
                 if (response.getRpta() == 1) {
                     Toast.makeText(this, response.getMessage(), Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(this, ActivityHome.class);
+                    startActivity(i);//Inicia la actividad
+                    overridePendingTransition(R.anim.rigth_in, R.anim.rigth_out);//Hacer Animaciones
                 } else {
                     Toast.makeText(this, response.getMessage(), Toast.LENGTH_SHORT).show();
                 }
